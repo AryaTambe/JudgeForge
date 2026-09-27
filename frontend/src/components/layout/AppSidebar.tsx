@@ -12,6 +12,7 @@ import {
   ShieldCheck,
   Settings,
   CalendarDays,
+  Zap,
 } from "lucide-react";
 
 import {
@@ -127,20 +128,59 @@ export function AppSidebar({
 }) {
   const items = navigation[role];
 
+  const roleLabel =
+    role === "participant"
+      ? "Participant"
+      : role === "judge"
+        ? "Judge"
+        : "Organizer";
+
   return (
-    <Sidebar>
+    <Sidebar
+      variant="sidebar"
+      collapsible="icon"
+      className="border-r border-sidebar-border"
+    >
       <SidebarContent>
         {/* Brand */}
+        <SidebarGroup className="py-4">
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton
+                size="lg"
+                tooltip="JudgeForge"
+                onClick={() => {
+                  window.location.href = "/";
+                }}
+                className="hover:bg-sidebar-accent"
+              >
+                <div className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+                  <Zap className="size-4" />
+                </div>
+
+                <div className="grid flex-1 text-left text-sm leading-tight">
+                  <span className="font-semibold tracking-tight">
+                    JudgeForge
+                  </span>
+
+                  <span className="text-xs text-sidebar-foreground/60">
+                    DOGFOOD 2026
+                  </span>
+                </div>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarGroup>
+
+        {/* Event */}
         <SidebarGroup>
-          <SidebarGroupLabel className="px-2 text-lg font-semibold">
-            JudgeForge
-          </SidebarGroupLabel>
+          <SidebarGroupLabel>Event</SidebarGroupLabel>
 
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton
-                  tooltip="Event"
+                  tooltip="DOGFOOD 2026"
                   onClick={() => {
                     window.location.href = "/";
                   }}
@@ -155,13 +195,7 @@ export function AppSidebar({
 
         {/* Role Navigation */}
         <SidebarGroup>
-          <SidebarGroupLabel>
-            {role === "participant"
-              ? "Participant"
-              : role === "judge"
-                ? "Judge"
-                : "Organizer"}
-          </SidebarGroupLabel>
+          <SidebarGroupLabel>{roleLabel}</SidebarGroupLabel>
 
           <SidebarGroupContent>
             <SidebarMenu>
@@ -184,7 +218,7 @@ export function AppSidebar({
       </SidebarContent>
 
       {/* Footer */}
-      <SidebarFooter>
+      <SidebarFooter className="pb-4">
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton
