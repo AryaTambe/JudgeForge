@@ -1,58 +1,20 @@
-"use client";
-
-import { ArrowRight, Zap } from "lucide-react";
-
-import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import Link from "next/link";
 
 export function PublicHeader() {
   return (
-    <header className="sticky top-0 z-30 border-b border-white/10 bg-neutral-950/80 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <a href="/" className="flex items-center gap-3">
-          <div className="flex size-9 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-            <Zap className="size-4" />
-          </div>
-
-          <div>
-            <p className="text-sm font-semibold tracking-tight text-white">
-              JudgeForge
-            </p>
-
-            <p className="text-[11px] text-white/45">
-              DOGFOOD 2026
-            </p>
-          </div>
-        </a>
-
-        <nav className="hidden items-center gap-1 sm:flex">
-          <Button
-            variant="ghost"
-            className="text-white/70 hover:bg-white/10 hover:text-white"
-          >
-            Projects
-          </Button>
-
-          <Button
-            variant="ghost"
-            className="text-white/70 hover:bg-white/10 hover:text-white"
-          >
-            About
-          </Button>
-        </nav>
-
-        <div className="flex items-center gap-2">
-          <Button
-            variant="outline"
-            className="border-white/15 bg-white/5 text-white hover:bg-white/10 hover:text-white"
-          >
-            Sign in
-          </Button>
-
-          <Button className="hidden sm:inline-flex">
-            Participate
-            <ArrowRight />
-          </Button>
-        </div>
+    <header className="public-header">
+      <Link className="public-brand" href="/" aria-label="DOGFOOD 2026 home">
+        <Image src="/dogfood-mark.png" alt="" width={36} height={36} priority unoptimized />
+        <span><strong>DOGFOOD</strong><small>PORTAL / 2026</small></span>
+      </Link>
+      <nav className="public-nav" aria-label="Main navigation">
+        <Link href="/projects">Project gallery</Link>
+        <a href="https://dogfoodhack.com/spec/" target="_blank" rel="noreferrer">Event spec <span aria-hidden="true">↗</span></a>
+      </nav>
+      <div className="public-header__actions">
+        <Link className="button button--quiet" href="/register">Sign up</Link>
+        <Link className="button button--quiet" href="/login">Sign in <span aria-hidden="true">→</span></Link>
       </div>
     </header>
   );

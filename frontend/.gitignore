@@ -32,6 +32,10 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
+
+# Local analysis artifact from the user-provided backend walkthrough
+/video_WhatsAppVideo2026-09-28at23.51.46(1)_analysis_20260928_204144.md
 
 # vercel
 .vercel
